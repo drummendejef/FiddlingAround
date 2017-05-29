@@ -17,6 +17,8 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             set { _everadiosessions = value; RaisePropertyChanged("FoundItems"); }
         }
 
+        public int Client_DownLoadProcessChanged { get; private set; }
+
 
 
 
