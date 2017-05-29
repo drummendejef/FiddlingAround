@@ -15,8 +15,6 @@ namespace Download_Eve_Radio_sessions
         {
             MainAsync(args).Wait();//Alles downloaden
 
-            Console.WriteLine("Alles is gedownload");
-            Console.ReadKey();
         }
 
         //Alles downloaden
