@@ -7,7 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="89,105,0,0" TextWrapping="Wrap" Text="DOET NOG NIETS" VerticalAlignment="Top" Height="132" Width="308"/>
-
+        <ListView HorizontalAlignment="Left" Margin="10,10,0,10" Width="174">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{}"/>
+                    <GridViewColumn Header="Progress" DisplayMemberBinding="{}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
