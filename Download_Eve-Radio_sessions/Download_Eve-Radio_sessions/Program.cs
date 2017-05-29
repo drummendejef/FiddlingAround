@@ -54,8 +54,8 @@ namespace Download_Eve_Radio_sessions
                         //Nakijken of dat proxy werkt?
 
                         //Make session-unique name
-                        string filename = downloadUrl.Split('/').Last();
-                        string path = System.Reflection.Assembly.GetEntryAssembly().Location;
+                        string filename = "C:\\Users\\Admin\\Music\\" + downloadUrl.Split('/').Last();
+                        string path = "C:\\Users\\Admin\\Music";
                         FileInfo fi = new FileInfo(filename);
 
                         //Check if we didn't already download this file.
