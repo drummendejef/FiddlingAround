@@ -1,0 +1,6 @@
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_Eve-Radio_sessions\bin\Debug\Download_Eve-Radio_sessions.exe.config
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_Eve-Radio_sessions\bin\Debug\Download_Eve-Radio_sessions.exe
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_Eve-Radio_sessions\bin\Debug\Download_Eve-Radio_sessions.pdb
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_Eve-Radio_sessions\obj\Debug\Download_Eve-Radio_sessions.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_Eve-Radio_sessions\obj\Debug\Download_Eve-Radio_sessions.exe
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_Eve-Radio_sessions\obj\Debug\Download_Eve-Radio_sessions.pdb
