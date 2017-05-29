@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -55,14 +56,15 @@ namespace Download_Eve_Radio_sessions
                         //Make session-unique name
                         string filename = downloadUrl.Split('/').Last();
                         string path = System.Reflection.Assembly.GetEntryAssembly().Location;
+                        FileInfo fi = new FileInfo(filename);
 
                         //Check if we didn't already download this file.
-                        if(!File.Exists(filename))
+                        if(!File.Exists(filename) || fi.Length < 330000000)
                         {
                             //client.DownloadFile(downloadUrl, "test.mp3");//Sync
                             //client.DownloadFileAsync(new Uri(downloadUrl), "test.mp3");//Async slecht
-                            await client.DownloadFileTaskAsync(downloadUrl, filename);//Async maar 1 per 1
-                                                                                      //await DownloadFileAsync(downloadUrl, client, filename);//Async
+                            //await client.DownloadFileTaskAsync(downloadUrl, filename);//Async maar 1 per 1
+                            await DownloadFileAsync(downloadUrl, filename);//Async
                         }
                     }
                 }
@@ -73,16 +75,18 @@ namespace Download_Eve_Radio_sessions
             }
         }
 
-        static private async Task DownloadFileAsync(string url, WebClient client, string naam)
+        static private async Task DownloadFileAsync(string url, string naam)
         {
             try
             {
                 using(WebClient wc = new WebClient())
                 {
+                    wc.DownloadProgressChanged += Client_DownLoadProcessChanged;
+                    wc.DownloadFileCompleted += Client_DownLoadProcessComplete;
                     WebProxy wp = new WebProxy("35.161.2.200", 80);
                     wc.Proxy = wp;
                     //    await wc.DownloadFileTaskAsync(new Uri(url), "test.mp3");
-                    await client.DownloadFileTaskAsync(new Uri(url), naam);
+                    wc.DownloadFileTaskAsync(new Uri(url), naam);
                 }
                 //await client.DownloadFileTaskAsync(new Uri(url), naam);
             }
@@ -92,10 +96,18 @@ namespace Download_Eve_Radio_sessions
             }
         }
 
+        //Bij het voltooien van een download
+        private static void Client_DownLoadProcessComplete(object sender, AsyncCompletedEventArgs e)
+        {
+            Console.WriteLine("Een download is compleet");
+        }
+
         //Het verloop van de download tonen
         static void Client_DownLoadProcessChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             Console.WriteLine("Download " + e.ProgressPercentage + "%");
         }
+
+
     }
 }
