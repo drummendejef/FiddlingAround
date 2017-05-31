@@ -43,6 +43,8 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            //Registreer andere VMs hier
+            SimpleIoc.Default.Register<EVERadioVM>();
         }
 
         public MainViewModel Main
@@ -56,6 +58,14 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
+        }
+
+        public EVERadioVM EVERadioVM
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EVERadioVM>();
+            }
         }
     }
 }

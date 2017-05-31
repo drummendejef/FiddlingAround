@@ -5,15 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Download_EVE_Radio_Sessions.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        DataContext="{Binding EVERadioVM, Source={StaticResource Locator}}"
+        Title="MainWindow" Height="450" Width="625">
     <Grid>
-        <ListView HorizontalAlignment="Left" Margin="10,10,0,10" Width="174">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{}"/>
-                    <GridViewColumn Header="Progress" DisplayMemberBinding="{}"/>
-                </GridView>
-            </ListView.View>
+        <ListView HorizontalAlignment="Left" Margin="10,10,0,10" Width="350" ItemsSource="{Binding EVERadioSessions}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <ProgressBar Minimum="0" Maximum="100" Width="50px" Value="{Binding Progress}" Margin="0,0,10,0" />
+                        <TextBlock Text="{Binding FileName}" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 </Window>

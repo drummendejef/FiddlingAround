@@ -2,24 +2,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 {
-    public class Download_EVE_RadioVM : MainViewModel
+    public class EVERadioVM : MainViewModel
     {
         #region Properties
         private List<EVERadioSession> _everadiosessions;
         public List<EVERadioSession> EVERadioSessions
         {
             get { return _everadiosessions; }
-            set { _everadiosessions = value; RaisePropertyChanged("FoundItems"); }
+            set { _everadiosessions = value; RaisePropertyChanged("EVERadioSessions"); }
         }
 
-        public int Client_DownLoadProcessChanged { get; private set; }
-
-
+        public DownloadProgressChangedEventHandler Client_DownLoadProcessChanged { get; private set; }
 
 
         #endregion
@@ -29,15 +28,15 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         #endregion
 
         #region Methods
-        //Constructor
-        public Download_EVE_RadioVM()
+        public EVERadioVM()
         {
-            //Ophalen van HTML bestand
+            EVERadioSessions = new List<EVERadioSession>();
 
-
+            //Alle sessies ophalen
+            GetAllSessions();
         }
 
-        private GetAllSessions()
+        private void GetAllSessions()
         {
             try
             {
@@ -60,6 +59,9 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                         int length = rewind.IndexOf("'}); return false;\">Start") - startPos;
 
                         string downloadUrl = rewind.Substring(startPos, length);
+                        string bestandsnaam = downloadUrl.Split('/').Last();
+
+                        EVERadioSessions.Add(new EVERadioSession() { FilePath = downloadUrl, FileName = bestandsnaam });
                     }
                 }
             }
@@ -68,12 +70,6 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                 Console.WriteLine(ex.Message);
             }
         }
-
-        //public void Client_DownLoadProcessChanged
-        //{
-
-        //}
         #endregion
-
     }
 }
