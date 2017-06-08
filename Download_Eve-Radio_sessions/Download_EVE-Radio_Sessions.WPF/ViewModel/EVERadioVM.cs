@@ -71,7 +71,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                     }
                     else
                     {
-                        sessie.Achtergrondkleur = "Green";
+                        sessie.Achtergrondkleur = "GreenYellow";
                     }
                 }
             }
@@ -118,7 +118,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             if(evers != null)
             { 
                 evers.Progress = 100;
-                evers.Achtergrondkleur = "Green";
+                evers.Achtergrondkleur = "GreenYellow";
             }
 
 
