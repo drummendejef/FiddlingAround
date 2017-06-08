@@ -6,17 +6,22 @@
         xmlns:local="clr-namespace:Download_EVE_Radio_Sessions.WPF"
         mc:Ignorable="d"
         DataContext="{Binding EVERadioVM, Source={StaticResource Locator}}"
-        Title="MainWindow" Height="450" Width="625">
+        Title="MainWindow" Height="600" Width="700">
     <Grid>
-        <ListView HorizontalAlignment="Left" Margin="10,10,0,10" Width="350" ItemsSource="{Binding EVERadioSessions}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="364*"/>
+            <ColumnDefinition Width="253*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Margin="10,10,8,10" ItemsSource="{Binding EVERadioSessions}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
-                        <ProgressBar Minimum="0" Maximum="100" Width="50px" Value="{Binding Progress}" Margin="0,0,10,0" />
-                        <TextBlock Text="{Binding FileName}" />
+                        <ProgressBar Minimum="0" Maximum="100" Width="100px" Value="{Binding Progress}" Margin="0,0,10,0" />
+                        <TextBlock Text="{Binding FileName}" Background="{Binding Achtergrondkleur}" />
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Content="Download All" Command="{Binding DownloadAllCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="30" Width="80"  />
     </Grid>
 </Window>

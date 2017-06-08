@@ -15,6 +15,7 @@ namespace Download_Eve_Radio_sessions
         {
             MainAsync(args).Wait();//Alles downloaden
 
+            Console.ReadKey();
         }
 
         //Alles downloaden
@@ -44,10 +45,6 @@ namespace Download_Eve_Radio_sessions
                         int length = rewind.IndexOf("'}); return false;\">Start") - startPos;
 
                         string downloadUrl = rewind.Substring(startPos, length);
-
-                        //Proberen met een proxy dingen te omzeilen
-                        WebProxy wp = new WebProxy("35.161.2.200", 80);
-                        client.Proxy = wp;
 
                         //Nakijken of dat proxy werkt?
 
@@ -81,9 +78,12 @@ namespace Download_Eve_Radio_sessions
                 {
                     wc.DownloadProgressChanged += Client_DownLoadProcessChanged;
                     wc.DownloadFileCompleted += Client_DownLoadProcessComplete;
-                    WebProxy wp = new WebProxy("35.161.2.200", 80);
+
+                    //Proberen met een proxy dingen te omzeilen
+                    WebProxy wp = new WebProxy("81.128.165.5", 3128);
                     wc.Proxy = wp;
-                    //    await wc.DownloadFileTaskAsync(new Uri(url), "test.mp3");
+
+                    //Als we hier geen await zetten kunnen we meerdere bestanden tegelijkertijd downloaden.
                     wc.DownloadFileTaskAsync(new Uri(url), naam);
                 }
                 //await client.DownloadFileTaskAsync(new Uri(url), naam);
