@@ -114,5 +114,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Download_EVE-Radio-Sessions.ClassLibrary\Download_EVE-Radio-Sessions.ClassLibrary.csproj">
+      <Project>{dce968c7-a6fc-469d-9a5d-dcfc196c62f3}</Project>
+      <Name>Download_EVE-Radio-Sessions.ClassLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

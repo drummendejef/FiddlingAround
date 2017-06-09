@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows.Media;
 using System.Runtime.Remoting.Contexts;
+using Download_EVE_Radio_Sessions.ClassLibrary;
+using Download_EVE_Radio_Sessions.ClassLibrary.Models;
 
 namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 {
@@ -24,10 +26,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             set { _everadiosessions = value; RaisePropertyChanged("EVERadioSessions"); }
         }
 
-        public Dictionary<WebClient, int> DownloadStatusDictionary { get; set; }
 
-        //Delegate
-        public delegate void UpdateDownloadProgressFromSession(EVERadioSession everadiosession);
 
         #endregion
 
@@ -46,8 +45,6 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 
             //Alle sessies ophalen
             GetAllSessions();
-
-            DownloadStatusDictionary = new Dictionary<WebClient, int>();
         }
 
         //Download all the sessions
@@ -91,10 +88,13 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                     wc.DownloadProgressChanged += Client_DownLoadProcessChanged;//Om tussentijdse feedback te kunnen geven.
                     wc.DownloadFileCompleted += Client_DownloadProcessComplete;//Om feedback te kunnen geven bij voltooing
 
-                    WebProxy wp = new WebProxy("35.167.77.175", 80);
-                    wc.Proxy = wp;
+                    //Make instance off class library
+                    DownloadEVERadioSessions downloadEVERadioSessionsClassLib = new DownloadEVERadioSessions();
+                    GetProxyModel proxyinfo =  downloadEVERadioSessionsClassLib.GetRandomProxy();//Get a random proxy
 
-                    DownloadStatusDictionary.Add(wc, 0);//Toevoegen aan dictionary om progress bij te houden per onderdeel.
+                    //Proxy instellen moesten er problemen zijn met een firewall
+                    WebProxy wp = new WebProxy(proxyinfo.Ip, proxyinfo.Port);
+                    wc.Proxy = wp;
 
                     await wc.DownloadFileTaskAsync(new Uri(url), naam);
                 }
