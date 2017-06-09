@@ -22,6 +22,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        
         <Button Content="Download All" Command="{Binding DownloadAllCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="30" Width="80"  />
+        <CheckBox Content="Use proxy" Grid.Column="1" HorizontalAlignment="Left" Margin="134,18,0,0" VerticalAlignment="Top" IsChecked="{Binding UseProxy}"/>
+        
+        <Label Content="Feedback:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,469,0,0" VerticalAlignment="Top" />
+        <TextBlock Grid.Column="1" Margin="10,495,10,10" TextWrapping="Wrap" Text="{Binding Feedback}" Foreground="{Binding FeedbackColor}"/>
     </Grid>
 </Window>

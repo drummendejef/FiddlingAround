@@ -26,7 +26,27 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             set { _everadiosessions = value; RaisePropertyChanged("EVERadioSessions"); }
         }
 
+        //Do we want to use the proxy or not?
+        private bool _useproxy;
+        public bool UseProxy
+        {
+            get { return _useproxy; }
+            set { _useproxy = value; RaisePropertyChanged("UseProxy"); }
+        }
 
+        //Feedback and color
+        private string _feedback;
+        public string Feedback
+        {
+            get { return _feedback; }
+            set { _feedback = value; RaisePropertyChanged("Feedback"); }
+        }
+        private string _feedbackcolor;
+        public string FeedbackColor
+        {
+            get { return _feedbackcolor; }
+            set { _feedbackcolor = value; RaisePropertyChanged("FeedbackColor"); }
+        }
 
         #endregion
 
@@ -45,6 +65,10 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 
             //Alle sessies ophalen
             GetAllSessions();
+
+            //Feedback invullen
+            Feedback = "Hello, I'm feedback. Please press 'Download All' to start";
+            FeedbackColor = "Black";
         }
 
         //Download all the sessions
@@ -52,10 +76,13 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         {
             try
             {
+                //Give feedback to user
+                FeedbackColor = "Green";
+                Feedback = "We started downloading ALL THE SONGS";
+
                 //We overlopen alle EVE Radio sessies die we willen downloaden
                 foreach(EVERadioSession sessie in EVERadioSessions)
                 {
-
                     string localpath = "C:\\Users\\Admin\\Music\\" + sessie.FileName;
 
                     //Kijken of dat het bestand niet al bestaat
@@ -69,12 +96,15 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                     else
                     {
                         sessie.Achtergrondkleur = "GreenYellow";
+                        sessie.Progress = 100;
                     }
                 }
             }
             catch(Exception ex)
             {
                 Console.WriteLine("Foutboodschap: " + ex.Message);
+                FeedbackColor = "Red";
+                Feedback = "Something went wrong, maybe this helps: " + ex.Message;
             }
         }
 
@@ -90,11 +120,14 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 
                     //Make instance off class library
                     DownloadEVERadioSessions downloadEVERadioSessionsClassLib = new DownloadEVERadioSessions();
-                    GetProxyModel proxyinfo =  downloadEVERadioSessionsClassLib.GetRandomProxy();//Get a random proxy
 
-                    //Proxy instellen moesten er problemen zijn met een firewall
-                    WebProxy wp = new WebProxy(proxyinfo.Ip, proxyinfo.Port);
-                    wc.Proxy = wp;
+                    if(UseProxy)//Use a proxy if the user wants to
+                    {
+                        GetProxyModel proxyinfo = downloadEVERadioSessionsClassLib.GetRandomProxy();//Get a random proxy
+                        
+                        WebProxy wp = new WebProxy(proxyinfo.Ip, proxyinfo.Port);//Proxy instellen
+                        wc.Proxy = wp;
+                    }
 
                     await wc.DownloadFileTaskAsync(new Uri(url), naam);
                 }
@@ -102,6 +135,14 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
+
+                if(ex.Message == "Unable to connect to the remote server")
+                    Feedback = "Error, try again with Proxy enabled";
+                else
+                    Feedback = "Something went wrong, maybe this helps: " + ex.Message;
+
+                FeedbackColor = "Red";
+                
             }
         }
 
@@ -116,22 +157,16 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 
             //Als we iets gevonden hebben vullen we een percentage in.
             if(evers != null)
-            { 
+            {
                 evers.Progress = 100;
                 evers.Achtergrondkleur = "GreenYellow";
             }
-
 
         }
 
         //When the download is progressing.
         private void Client_DownLoadProcessChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            //Oude versie van de lange lijn om een meegezonden sessie op te halen
-            //TaskCompletionSource<object> test = (TaskCompletionSource<object>)e.UserState;
-            //Uri asyncstate = (Uri)test.Task.AsyncState;
-            //string sessiontolookfor = asyncstate.Segments[4].ToString();//Het 4de fragment is de naam
-
             //De meegezonden sessie ophalen
             string sessiontolookfor = ((Uri)((TaskCompletionSource<object>)e.UserState).Task.AsyncState).Segments[4].ToString();
 
@@ -176,6 +211,8 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                FeedbackColor = "Red";
+                Feedback = "Something went wrong, maybe this helps: " + ex.Message;
             }
         }
         #endregion
