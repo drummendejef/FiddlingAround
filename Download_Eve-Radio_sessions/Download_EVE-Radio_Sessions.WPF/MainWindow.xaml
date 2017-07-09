@@ -22,11 +22,21 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+
         <Button Content="Download All" Command="{Binding DownloadAllCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="30" Width="80"  />
         <CheckBox Content="Use proxy" Grid.Column="1" HorizontalAlignment="Left" Margin="134,18,0,0" VerticalAlignment="Top" IsChecked="{Binding UseProxy}"/>
-        
-        <Label Content="Feedback:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,469,0,0" VerticalAlignment="Top" />
-        <TextBlock Grid.Column="1" Margin="10,495,10,10" TextWrapping="Wrap" Text="{Binding Feedback}" Foreground="{Binding FeedbackColor}"/>
+
+        <Label Content="Feedback:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,70" VerticalAlignment="Bottom" />
+        <TextBlock Grid.Column="1" Margin="10,0,10,10" VerticalAlignment="Bottom" Height="60px" TextWrapping="Wrap" Text="{Binding Feedback}" Foreground="{Binding FeedbackColor}"/>
+        <Button Content="Choose Download Folder" Grid.Column="1" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Command="{Binding ChooseDownloadFolderCommand}" />
+
+        <!--Todo list-->
+        <Label Content="Todo List" Grid.Column="1" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <ListBox Grid.Column="1" Height="100" Margin="10,98,10,0" VerticalAlignment="Top">
+            <ListBoxItem>Choose which song to download</ListBoxItem>
+            <ListBoxItem></ListBoxItem>
+        </ListBox>
+
+
     </Grid>
 </Window>

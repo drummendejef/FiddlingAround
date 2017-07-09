@@ -19,6 +19,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
     public class EVERadioVM : MainViewModel
     {
         #region Properties
+        //List of all the found EVE Radio sessions
         private List<EVERadioSession> _everadiosessions;
         public List<EVERadioSession> EVERadioSessions
         {
@@ -26,7 +27,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             set { _everadiosessions = value; RaisePropertyChanged("EVERadioSessions"); }
         }
 
-        //Do we want to use the proxy or not?
+        //Do we want to use the proxy in case of a firewall somewhere?
         private bool _useproxy;
         public bool UseProxy
         {
@@ -56,6 +57,16 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         {
             get { return new RelayCommand(DownloadAll); }
         }
+
+        //Button "Open Download Folder" in main screen
+        public ICommand ChooseDownloadFolderCommand
+        {
+            get { return new RelayCommand(OpenDownloadFolder); }
+        }
+
+
+
+
         #endregion
 
         #region Methods
@@ -214,6 +225,12 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                 FeedbackColor = "Red";
                 Feedback = "Something went wrong, maybe this helps: " + ex.Message;
             }
+        }
+
+        //Open and choose a folder where the downloads will go to
+        private void OpenDownloadFolder()
+        {
+            
         }
         #endregion
     }
