@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Runtime.Remoting.Contexts;
 using Download_EVE_Radio_Sessions.ClassLibrary;
 using Download_EVE_Radio_Sessions.ClassLibrary.Models;
+using System.Windows.Forms;
 
 namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 {
@@ -48,6 +49,9 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             get { return _feedbackcolor; }
             set { _feedbackcolor = value; RaisePropertyChanged("FeedbackColor"); }
         }
+
+        //Location of where the downloads should go to
+        private static string _DOWNLOADFOLDER = "C:\\Users\\Admin\\Music\\";
 
         #endregion
 
@@ -94,7 +98,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                 //We overlopen alle EVE Radio sessies die we willen downloaden
                 foreach(EVERadioSession sessie in EVERadioSessions)
                 {
-                    string localpath = "C:\\Users\\Admin\\Music\\" + sessie.FileName;
+                    string localpath = _DOWNLOADFOLDER + sessie.FileName;
 
                     //Kijken of dat het bestand niet al bestaat
                     //En geen mislukte download is
@@ -230,7 +234,28 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         //Open and choose a folder where the downloads will go to
         private void OpenDownloadFolder()
         {
-            
+            try
+            {
+                using(FolderBrowserDialog fbd = new FolderBrowserDialog())
+                {
+                    //Venster openen
+                    DialogResult result = fbd.ShowDialog();
+
+                    //Nakijken of dat venster succesvol is geopend en pad is gekozen
+                    if(result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                    {
+                        //Pad opslaan
+                        _DOWNLOADFOLDER = fbd.SelectedPath;
+
+                        Console.WriteLine("Downloadpad veranderd naar: " + fbd.SelectedPath);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                FeedbackColor = "Red";
+                Feedback = "Failed to open folder: " + ex.Message;
+            }
         }
         #endregion
     }
