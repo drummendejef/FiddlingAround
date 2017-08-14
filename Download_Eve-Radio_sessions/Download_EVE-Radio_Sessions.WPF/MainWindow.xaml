@@ -16,8 +16,11 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
-                        <ProgressBar Minimum="0" Maximum="100" Width="100px" Value="{Binding Progress}" Margin="0,0,10,0" />
-                        <TextBlock Text="{Binding FileName}" Background="{Binding Achtergrondkleur}" />
+                        <Grid Margin="0,-5,0,0">
+                            <ProgressBar Minimum="0" Maximum="100" Width="100px" Value="{Binding Progress}"/>
+                            <Label HorizontalAlignment="Center" Content="{Binding Progress, FallbackValue=?}" ContentStringFormat="{}{0}%" ></Label>
+                        </Grid>
+                        <TextBlock Margin="10,0,0,0" Text="{Binding FileName}" Background="{Binding Achtergrondkleur}" />
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -33,9 +36,11 @@
         <!--Todo list-->
         <Label Content="Todo List" Grid.Column="1" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
         <ListBox Grid.Column="1" Height="100" Margin="10,98,10,0" VerticalAlignment="Top">
-            <ListBoxItem>Choose which song to download</ListBoxItem>
+            <ListBoxItem>Choose which song to download (download selected button?)</ListBoxItem>
             <ListBoxItem>show what item an error came from</ListBoxItem>
             <ListBoxItem>Show errors in a list?</ListBoxItem>
+            <ListBoxItem>Show items per date</ListBoxItem>
+            <ListBoxItem>Show networkspeed we are using</ListBoxItem>
         </ListBox>
 
 
