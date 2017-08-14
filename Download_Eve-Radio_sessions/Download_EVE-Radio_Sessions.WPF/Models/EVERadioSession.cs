@@ -27,7 +27,7 @@ namespace Download_EVE_Radio_Sessions.WPF.Models
         /// <summary>
         /// The backgroundcolor of the item in the list
         /// </summary>
-        private string _achtergrondkleur;
+        private string _achtergrondkleur = "white";
         public string Achtergrondkleur
         {
             get { return _achtergrondkleur; }

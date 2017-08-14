@@ -62,6 +62,12 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             get { return new RelayCommand(DownloadAll); }
         }
 
+        //Button "Download Selected" in main screen
+        public ICommand DownloadSelectedCommand
+        {
+            get { return new RelayCommand(DownloadSelected); }
+        }
+
         //Button "Open Download Folder" in main screen
         public ICommand ChooseDownloadFolderCommand
         {
@@ -78,7 +84,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         {
             EVERadioSessions = new List<EVERadioSession>();
 
-            //Alle sessies ophalen
+            //Alle sessies ophalen en tonen
             GetAllSessions();
 
             //Feedback invullen
@@ -122,6 +128,18 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                 Feedback = "Something went wrong, maybe this helps: " + ex.Message;
             }
         }
+
+        //Download de geselecteerde sessies
+        private void DownloadSelected()
+        {
+            Console.WriteLine("DownloadSelected geklikt");
+
+            //TODO: Ophalen welke sessies geselecteerd zijn.
+
+
+            //TODO: Sessies downloaden
+        }
+
 
         //Het downloaden van een bestand
         private async Task DownloadFileAsync(string url, string naam)
