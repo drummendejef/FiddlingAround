@@ -14,6 +14,8 @@ using System.Runtime.Remoting.Contexts;
 using Download_EVE_Radio_Sessions.ClassLibrary;
 using Download_EVE_Radio_Sessions.ClassLibrary.Models;
 using System.Windows.Forms;
+using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 
 namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 {
@@ -51,7 +53,13 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         }
 
         //Location of where the downloads should go to
-        private static string _DOWNLOADFOLDER = "C:\\Users\\Admin\\Music\\";
+        private string _downloadfolder = "C:\\Users\\Admin\\Music\\";
+        public string DownloadFolder
+        {
+            get { return _downloadfolder; }
+            set { _downloadfolder = value; RaisePropertyChanged("DownloadFolder"); }
+        }
+
 
         #endregion
 
@@ -104,15 +112,23 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                 //We overlopen alle EVE Radio sessies die we willen downloaden
                 foreach(EVERadioSession sessie in EVERadioSessions)
                 {
-                    string localpath = _DOWNLOADFOLDER + sessie.FileName;
+                    string localpath = _downloadfolder + sessie.FileName;
 
                     //Kijken of dat het bestand niet al bestaat
                     //En geen mislukte download is
                     FileInfo fi = new FileInfo(localpath);
-                    if(!File.Exists(localpath) || fi.Length < 100000000)// || fi.Length < 330000000)//Sommige bestanden zijn in slechtere kwaliteit opgenomen
+                    //if(!File.Exists(localpath))// || fi.Length < 100000000)// || fi.Length < 330000000)//Sommige bestanden zijn in slechtere kwaliteit opgenomen
+                    if(true)
                     {
+                        //TODO: kijk welke van deze 2 methods het meest efficient is.
+                        //Check time of file
+                        GetLengthUsingShellFile(localpath, sessie.FileName);
+                        //Check time of file
+                        GetLengthUsingShellObject(localpath);
+
+
                         sessie.Achtergrondkleur = "Orange";
-                        DownloadFileAsync(sessie.FilePath, localpath);
+                        //DownloadFileAsync(sessie.FilePath, localpath);//Aanzetten om bestanden te downloaden
                     }
                     else
                     {
@@ -126,6 +142,38 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                 Console.WriteLine("Foutboodschap: " + ex.Message);
                 FeedbackColor = "Red";
                 Feedback = "Something went wrong, maybe this helps: " + ex.Message;
+            }
+        }
+
+        
+        private void GetLengthUsingShellObject(string localpath)
+        {
+            try
+            {
+                using(var shell = ShellObject.FromParsingName(localpath))
+                {
+                    IShellProperty prop = shell.Properties.System.Media.Duration;
+                    var t = (ulong)prop.ValueAsObject;
+                    Console.WriteLine("getlengthusingshellobject: " + TimeSpan.FromTicks((long)t));
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("GetLengthUsingShellObject failed: ", ex.Message);
+            }
+        }
+
+        private void GetLengthUsingShellFile(string localpath, string FileName)
+        {
+            try
+            {
+                ShellFile so = ShellFile.FromFilePath(localpath);
+                double.TryParse(so.Properties.System.Media.Duration.Value.ToString(), out double nanoseconds);
+                Console.WriteLine(FileName + " lengte: " + TimeSpan.FromTicks((long)nanoseconds));
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("GetLengthUsingShellFile failed: ", ex.Message);
             }
         }
 
@@ -157,7 +205,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                     if(UseProxy)//Use a proxy if the user wants to
                     {
                         GetProxyModel proxyinfo = downloadEVERadioSessionsClassLib.GetRandomProxy();//Get a random proxy
-                        
+
                         WebProxy wp = new WebProxy(proxyinfo.Ip, proxyinfo.Port);//Proxy instellen
                         wc.Proxy = wp;
                     }
@@ -175,7 +223,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                     Feedback = "Something went wrong, maybe this helps: " + ex.Message;
 
                 FeedbackColor = "Red";
-                
+
             }
         }
 
@@ -263,7 +311,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                     if(result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                     {
                         //Pad opslaan
-                        _DOWNLOADFOLDER = fbd.SelectedPath;
+                        DownloadFolder = fbd.SelectedPath;
 
                         Console.WriteLine("Downloadpad veranderd naar: " + fbd.SelectedPath);
                     }

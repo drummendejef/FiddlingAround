@@ -5,3 +5,4 @@ C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Downlo
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio-Sessions.ClassLibrary\obj\Debug\Download_EVE-Radio-Sessions.ClassLibrary.pdb
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio-Sessions.ClassLibrary\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio-Sessions.ClassLibrary\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio-Sessions.ClassLibrary\obj\Debug\Download_EVE-Radio-Sessions.ClassLibrary.csproj.CoreCompileInputs.cache
