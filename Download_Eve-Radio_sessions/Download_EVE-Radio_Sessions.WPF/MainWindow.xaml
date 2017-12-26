@@ -12,7 +12,7 @@
             <ColumnDefinition Width="364*"/>
             <ColumnDefinition Width="253*"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="everadiosessionsListView" Margin="10,10,8,10" ItemsSource="{Binding EVERadioSessions}" SelectionMode="Multiple" >
+        <ListView Name="everadiosessionsListView" Margin="10,10,8,10" ItemsSource="{Binding EVERadioSessions}" SelectionMode="Multiple"  >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -38,16 +38,20 @@
         <Label Content="Feedback:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,70" VerticalAlignment="Bottom" />
         <TextBlock Grid.Column="1" Margin="10,0,10,10" VerticalAlignment="Bottom" Height="60px" TextWrapping="Wrap" Text="{Binding Feedback}" Foreground="{Binding FeedbackColor}"/>
         <Button Content="Choose Download Folder" Grid.Column="1" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Command="{Binding ChooseDownloadFolderCommand}" />
-
+        
+        
+        
         <!--Todo list-->
-        <Label Content="Todo List" Grid.Column="1" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-        <ListBox Grid.Column="1" Height="100" Margin="10,98,10,0" VerticalAlignment="Top">
+        <Label Content="Todo List" Grid.Column="1" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
+        <ListBox Grid.Column="1" Height="100" Margin="10,125,10,0" VerticalAlignment="Top">
             <ListBoxItem>Choose which song to download (download selected button?)</ListBoxItem>
             <ListBoxItem>show what item an error came from</ListBoxItem>
             <ListBoxItem>Show errors in a list?</ListBoxItem>
             <ListBoxItem>Show items per date</ListBoxItem>
             <ListBoxItem>Show networkspeed we are using</ListBoxItem>
+            <ListBoxItem>Check length of session</ListBoxItem>
         </ListBox>
+        <Label Content="{Binding DownloadFolder}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Width="157"/>
 
     </Grid>
 </Window>
