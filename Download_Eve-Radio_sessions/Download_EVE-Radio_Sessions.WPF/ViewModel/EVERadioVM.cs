@@ -16,6 +16,7 @@ using Download_EVE_Radio_Sessions.ClassLibrary.Models;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
+using System.Diagnostics;
 
 namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 {
@@ -117,18 +118,10 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                     //Kijken of dat het bestand niet al bestaat
                     //En geen mislukte download is
                     FileInfo fi = new FileInfo(localpath);
-                    //if(!File.Exists(localpath))// || fi.Length < 100000000)// || fi.Length < 330000000)//Sommige bestanden zijn in slechtere kwaliteit opgenomen
-                    if(true)
+                    if(!File.Exists(localpath) && !IsFullSession(localpath))// || fi.Length < 100000000)// || fi.Length < 330000000)//Sommige bestanden zijn in slechtere kwaliteit opgenomen
                     {
-                        //TODO: kijk welke van deze 2 methods het meest efficient is.
-                        //Check time of file
-                        GetLengthUsingShellFile(localpath, sessie.FileName);
-                        //Check time of file
-                        GetLengthUsingShellObject(localpath);
-
-
                         sessie.Achtergrondkleur = "Orange";
-                        //DownloadFileAsync(sessie.FilePath, localpath);//Aanzetten om bestanden te downloaden
+                        DownloadFileAsync(sessie.FilePath, localpath);//Aanzetten om bestanden te downloaden
                     }
                     else
                     {
@@ -146,36 +139,48 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         }
 
         
-        private void GetLengthUsingShellObject(string localpath)
+        private bool IsFullSession(string localpath)
         {
             try
             {
-                using(var shell = ShellObject.FromParsingName(localpath))
+                //Lengte van setje opvragen.
+                ulong ticks = 0;
+                using(ShellObject shell = ShellObject.FromParsingName(localpath))
                 {
                     IShellProperty prop = shell.Properties.System.Media.Duration;
-                    var t = (ulong)prop.ValueAsObject;
-                    Console.WriteLine("getlengthusingshellobject: " + TimeSpan.FromTicks((long)t));
+                    ticks = (ulong)prop.ValueAsObject;
                 }
+
+                //Kijken of het een volledige sessie is
+                if(ticks > 108000000000)//3 uur lengte
+                {
+                    return true;//Het is een volledige sessie.
+                }
+
+                return false;//De sessie is nog niet compleet
+
             }
             catch(Exception ex)
             {
                 Console.WriteLine("GetLengthUsingShellObject failed: ", ex.Message);
+
+                return false;//Er is iets misgelopen, de sessie is waarschijnlijk niet compleet
             }
         }
 
-        private void GetLengthUsingShellFile(string localpath, string FileName)
-        {
-            try
-            {
-                ShellFile so = ShellFile.FromFilePath(localpath);
-                double.TryParse(so.Properties.System.Media.Duration.Value.ToString(), out double nanoseconds);
-                Console.WriteLine(FileName + " lengte: " + TimeSpan.FromTicks((long)nanoseconds));
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine("GetLengthUsingShellFile failed: ", ex.Message);
-            }
-        }
+        //private void GetLengthUsingShellFile(string localpath, string FileName)
+        //{
+        //    try
+        //    {
+        //        ShellFile so = ShellFile.FromFilePath(localpath);
+        //        double.TryParse(so.Properties.System.Media.Duration.Value.ToString(), out double nanoseconds);
+        //        Console.WriteLine(FileName + " lengte: " + TimeSpan.FromTicks((long)nanoseconds));
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        Console.WriteLine("GetLengthUsingShellFile failed: ", ex.Message);
+        //    }
+        //}
 
         //Download de geselecteerde sessies
         private void DownloadSelected()

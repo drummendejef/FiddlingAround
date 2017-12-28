@@ -49,7 +49,6 @@
             <ListBoxItem>Show errors in a list?</ListBoxItem>
             <ListBoxItem>Show items per date</ListBoxItem>
             <ListBoxItem>Show networkspeed we are using</ListBoxItem>
-            <ListBoxItem>Check length of session</ListBoxItem>
         </ListBox>
         <Label Content="{Binding DownloadFolder}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Width="157"/>
 
