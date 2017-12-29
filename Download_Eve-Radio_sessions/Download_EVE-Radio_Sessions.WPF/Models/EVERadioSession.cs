@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,15 @@ namespace Download_EVE_Radio_Sessions.WPF.Models
             set { _achtergrondkleur = value; RaisePropertyChanged("Achtergrondkleur"); }
         }
 
-        //public string Color { get; set; } = "Orange";
+        /// <summary>
+        /// Keep the downloadspeed per downloadsession
+        /// </summary>
+        private Stopwatch _stopwatch;
+        public Stopwatch StopWatch
+        {
+            get { return _stopwatch; }
+            set { _stopwatch = value; RaisePropertyChanged("StopWatch"); }
+        }
+
     }
 }

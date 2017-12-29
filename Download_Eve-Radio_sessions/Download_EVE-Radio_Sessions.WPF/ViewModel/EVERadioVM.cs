@@ -61,6 +61,15 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             set { _downloadfolder = value; RaisePropertyChanged("DownloadFolder"); }
         }
 
+        //List of all downloadspeeds
+        private Dictionary<int, int> _downloadingspeeds;
+        public Dictionary<int, int> DownloadingSpeeds
+        {
+            get { return _downloadingspeeds; }
+            set { _downloadingspeeds = value; RaisePropertyChanged("DownloadingSpeeds"); }
+        }
+
+
 
         #endregion
 
@@ -118,7 +127,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                     //Kijken of dat het bestand niet al bestaat
                     //En geen mislukte download is
                     FileInfo fi = new FileInfo(localpath);
-                    if(!File.Exists(localpath) && !IsFullSession(localpath))// || fi.Length < 100000000)// || fi.Length < 330000000)//Sommige bestanden zijn in slechtere kwaliteit opgenomen
+                    if(!File.Exists(localpath) && !IsFullSession(localpath))//Kijken of het bestnad 
                     {
                         sessie.Achtergrondkleur = "Orange";
                         DownloadFileAsync(sessie.FilePath, localpath);//Aanzetten om bestanden te downloaden
@@ -162,25 +171,11 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             }
             catch(Exception ex)
             {
-                Console.WriteLine("GetLengthUsingShellObject failed: ", ex.Message);
+                Console.WriteLine("GetLengthUsingShellObject failed: " + ex.Message);
 
                 return false;//Er is iets misgelopen, de sessie is waarschijnlijk niet compleet
             }
         }
-
-        //private void GetLengthUsingShellFile(string localpath, string FileName)
-        //{
-        //    try
-        //    {
-        //        ShellFile so = ShellFile.FromFilePath(localpath);
-        //        double.TryParse(so.Properties.System.Media.Duration.Value.ToString(), out double nanoseconds);
-        //        Console.WriteLine(FileName + " lengte: " + TimeSpan.FromTicks((long)nanoseconds));
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        Console.WriteLine("GetLengthUsingShellFile failed: ", ex.Message);
-        //    }
-        //}
 
         //Download de geselecteerde sessies
         private void DownloadSelected()
@@ -194,7 +189,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         }
 
 
-        //Het downloaden van een bestand
+        //Start downloaden van een bestand
         private async Task DownloadFileAsync(string url, string naam)
         {
             try
@@ -211,9 +206,10 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                     {
                         GetProxyModel proxyinfo = downloadEVERadioSessionsClassLib.GetRandomProxy();//Get a random proxy
 
-                        WebProxy wp = new WebProxy(proxyinfo.Ip, proxyinfo.Port);//Proxy instellen
-                        wc.Proxy = wp;
+                        wc.Proxy = new WebProxy(proxyinfo.Ip, proxyinfo.Port);//Proxy instellen
                     }
+
+                    //TODO: Start timer for downloadspeed en toevoegen aan lijst
 
                     await wc.DownloadFileTaskAsync(new Uri(url), naam);
                 }
@@ -241,6 +237,9 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             //Opzoeken van de bestandsnaam in de sessielijst
             EVERadioSession evers = EVERadioSessions.Find(f => f.FileName == sessiontolookfor);
 
+            //Resetten van downloadsnelheid stopwatch
+            evers.StopWatch.Reset();
+
             //Als we iets gevonden hebben vullen we een percentage in.
             if(evers != null)
             {
@@ -259,12 +258,16 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             //Opzoeken van de bestandsnaam in de sessielijst
             EVERadioSession evers = EVERadioSessions.Find(f => f.FileName == sessiontolookfor);
 
+            //TODO: Stopwatch per sessie ophalen en downloadsnelheid berekenen.
+            Console.WriteLine("Downloadsnelheid " + evers.FileName + " = " + (e.BytesReceived / 1024d / evers.StopWatch.Elapsed.TotalSeconds) + "kb/s");
+
+
             //Als we iets gevonden hebben vullen we een percentage in.
             if(evers != null)
                 evers.Progress = e.ProgressPercentage;
         }
 
-        //Get all the sessions and show them
+        //Get all the sessions and show them in the overviewlist
         private void GetAllSessions()
         {
             try
@@ -281,8 +284,6 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                     //Nu gaan we voor elk van de gevonden rewinds de starturl opzoeken
                     foreach(string rewind in rewinds)
                     {
-                        //client.DownloadProgressChanged += Client_DownLoadProcessChanged;
-
                         //We vinden de startpositie van de tekst die we willen, de eindpositie, en halen daar de lengte uit.
                         int startPos = rewind.IndexOf("Listen from: <a href='#' onclick=\"javascript:doCmd({rewind:'") + "Listen from: <a href='#' onclick=\"javascript:doCmd({rewind:'".Length;
                         int length = rewind.IndexOf("'}); return false;\">Start") - startPos;
@@ -290,7 +291,11 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                         string downloadUrl = rewind.Substring(startPos, length);
                         string bestandsnaam = downloadUrl.Split('/').Last();
 
-                        EVERadioSessions.Add(new EVERadioSession() { FilePath = downloadUrl, FileName = bestandsnaam });
+                        //Starten met downloadsnelheidsberekening
+                        Stopwatch sw = new Stopwatch();
+                        sw.Start();
+
+                        EVERadioSessions.Add(new EVERadioSession() { FilePath = downloadUrl, FileName = bestandsnaam, StopWatch = sw });
                     }
                 }
             }
