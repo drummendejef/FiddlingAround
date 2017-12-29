@@ -124,10 +124,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                 {
                     string localpath = _downloadfolder + sessie.FileName;
 
-                    //Kijken of dat het bestand niet al bestaat
-                    //En geen mislukte download is
-                    FileInfo fi = new FileInfo(localpath);
-                    if(!File.Exists(localpath) && !IsFullSession(localpath))//Kijken of het bestnad 
+                    if(!IsFullSession(localpath))//Als het een volledig bestand is moeten we het niet opnieuw downloaden
                     {
                         sessie.Achtergrondkleur = "Orange";
                         DownloadFileAsync(sessie.FilePath, localpath);//Aanzetten om bestanden te downloaden
@@ -259,8 +256,8 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             EVERadioSession evers = EVERadioSessions.Find(f => f.FileName == sessiontolookfor);
 
             //TODO: Stopwatch per sessie ophalen en downloadsnelheid berekenen.
-            Console.WriteLine("Downloadsnelheid " + evers.FileName + " = " + (e.BytesReceived / 1024d / evers.StopWatch.Elapsed.TotalSeconds) + "kb/s");
-
+            //Console.WriteLine("Downloadsnelheid " + evers.FileName + " = " + (e.BytesReceived / 1024d / evers.StopWatch.Elapsed.TotalSeconds) + "kb/s");
+            evers.DownloadSpeed = e.BytesReceived / 1024d / evers.StopWatch.Elapsed.TotalSeconds;
 
             //Als we iets gevonden hebben vullen we een percentage in.
             if(evers != null)

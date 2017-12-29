@@ -36,7 +36,7 @@ namespace Download_EVE_Radio_Sessions.WPF.Models
         }
 
         /// <summary>
-        /// Keep the downloadspeed per downloadsession
+        /// Keep the stopwatch per session
         /// </summary>
         private Stopwatch _stopwatch;
         public Stopwatch StopWatch
@@ -44,6 +44,16 @@ namespace Download_EVE_Radio_Sessions.WPF.Models
             get { return _stopwatch; }
             set { _stopwatch = value; RaisePropertyChanged("StopWatch"); }
         }
+        /// <summary>
+        /// Keep the downloadspeed per downloadsession
+        /// </summary>
+        private double _downloadspeed;
+        public double DownloadSpeed
+        {
+            get { return _downloadspeed; }
+            set { _downloadspeed = value; RaisePropertyChanged("DownloadSpeed"); }
+        }
+
 
     }
 }

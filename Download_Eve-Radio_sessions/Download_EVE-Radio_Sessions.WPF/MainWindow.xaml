@@ -16,6 +16,13 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
+                        <WrapPanel.ToolTip>
+                            <ToolTip HasDropShadow="True" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding DownloadSpeed}" ContentStringFormat="Downloadspeed: {}kb/s"></Label>
+                                </StackPanel>
+                            </ToolTip>
+                        </WrapPanel.ToolTip>
                         <Grid Margin="0,-5,0,0">
                             <ProgressBar Minimum="0" Maximum="100" Width="100px" Value="{Binding Progress}"/>
                             <Label HorizontalAlignment="Center" Content="{Binding Progress, FallbackValue=?}" ContentStringFormat="{}{0}%" ></Label>
