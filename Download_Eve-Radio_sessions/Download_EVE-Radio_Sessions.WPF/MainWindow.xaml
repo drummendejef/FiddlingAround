@@ -15,11 +15,13 @@
         <ListView Name="everadiosessionsListView" Margin="10,10,8,10" ItemsSource="{Binding EVERadioSessions}" SelectionMode="Multiple"  >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <WrapPanel>
+                    <WrapPanel ToolTipService.ShowDuration="20000" ToolTipService.HasDropShadow="True" >
                         <WrapPanel.ToolTip>
-                            <ToolTip HasDropShadow="True" >
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding DownloadSpeed}" ContentStringFormat="Downloadspeed: {}kb/s"></Label>
+                            <ToolTip>
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="{Binding DownloadSpeed}" ContentStringFormat="Downloadspeed: {0}kb/s"></Label>
+                                    <Label Content="{Binding TimeStarted}" ContentStringFormat="Started downloading at: {0:Humm:ss}"></Label>
+                                    <Label Content="{Binding FileSize}" ContentStringFormat="Filesize: {0}MB"></Label>
                                 </StackPanel>
                             </ToolTip>
                         </WrapPanel.ToolTip>

@@ -206,7 +206,12 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                         wc.Proxy = new WebProxy(proxyinfo.Ip, proxyinfo.Port);//Proxy instellen
                     }
 
-                    //TODO: Start timer for downloadspeed en toevoegen aan lijst
+                    //timer per download starten
+                    EVERadioSession evers = EVERadioSessions.Find(f => f.FileName == naam.Split('\\').Last());
+                    evers.StopWatch.Start();
+
+                    //Extra informatie per download bijhouden.
+                    evers.TimeStarted = DateTime.Now;
 
                     await wc.DownloadFileTaskAsync(new Uri(url), naam);
                 }
@@ -254,10 +259,12 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 
             //Opzoeken van de bestandsnaam in de sessielijst
             EVERadioSession evers = EVERadioSessions.Find(f => f.FileName == sessiontolookfor);
-
+            
             //TODO: Stopwatch per sessie ophalen en downloadsnelheid berekenen.
             //Console.WriteLine("Downloadsnelheid " + evers.FileName + " = " + (e.BytesReceived / 1024d / evers.StopWatch.Elapsed.TotalSeconds) + "kb/s");
             evers.DownloadSpeed = e.BytesReceived / 1024d / evers.StopWatch.Elapsed.TotalSeconds;
+            evers.FileSize = e.TotalBytesToReceive/1000000;
+
 
             //Als we iets gevonden hebben vullen we een percentage in.
             if(evers != null)
@@ -290,9 +297,9 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 
                         //Starten met downloadsnelheidsberekening
                         Stopwatch sw = new Stopwatch();
-                        sw.Start();
+                        //sw.Start();
 
-                        EVERadioSessions.Add(new EVERadioSession() { FilePath = downloadUrl, FileName = bestandsnaam, StopWatch = sw });
+                        EVERadioSessions.Add(new EVERadioSession() { FilePath = downloadUrl, FileName = bestandsnaam, StopWatch = sw});
                     }
                 }
             }

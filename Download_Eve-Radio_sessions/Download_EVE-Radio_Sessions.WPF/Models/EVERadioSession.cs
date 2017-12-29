@@ -12,7 +12,6 @@ namespace Download_EVE_Radio_Sessions.WPF.Models
     public class EVERadioSession : ViewModelBase
     {
         public string FileName { get; set; }
-        //public int Progress { get; set; } = 0;
 
         private int _progress;
         public int Progress
@@ -53,6 +52,24 @@ namespace Download_EVE_Radio_Sessions.WPF.Models
             get { return _downloadspeed; }
             set { _downloadspeed = value; RaisePropertyChanged("DownloadSpeed"); }
         }
+
+        /// <summary>
+        /// Extra information for on the tooltip
+        /// </summary>
+        private long _filesize;
+        public long FileSize 
+        {
+            get { return _filesize; }
+            set { _filesize = value; RaisePropertyChanged("FileSize"); }
+        }
+        private DateTime _timestarted;//Time the download started
+        public DateTime TimeStarted
+        {
+            get { return _timestarted; }
+            set { _timestarted = value; RaisePropertyChanged("TimeStarted"); }
+        }
+
+
 
 
     }
