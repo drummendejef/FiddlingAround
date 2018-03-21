@@ -54,6 +54,7 @@
         <Label Content="Todo List" Grid.Column="1" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
         <ListBox Grid.Column="1" Height="100" Margin="10,125,10,0" VerticalAlignment="Top">
             <ListBoxItem>Choose which song to download (download selected button?)</ListBoxItem>
+            <ListBoxItem>Add button to open the downloadfolder (om na te kijken of het volledig gedownload is, of het liedje af te spelen,...)</ListBoxItem>
             <ListBoxItem>show what item an error came from</ListBoxItem>
             <ListBoxItem>Show errors in a list?</ListBoxItem>
             <ListBoxItem>Show items per date</ListBoxItem>
