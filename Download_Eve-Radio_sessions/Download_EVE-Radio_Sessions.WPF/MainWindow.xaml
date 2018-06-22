@@ -48,7 +48,7 @@
         <TextBlock Grid.Column="1" Margin="10,0,10,10" VerticalAlignment="Bottom" Height="60px" TextWrapping="Wrap" Text="{Binding Feedback}" Foreground="{Binding FeedbackColor}"/>
         <Button Content="Choose Download Folder" Grid.Column="1" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Command="{Binding ChooseDownloadFolderCommand}"/>
         <Button Content="Open Downloadfolder" Grid.Column="1" Margin="153,45,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="121" Command="{Binding OpenDownloadFolderCommand}"/>
-
+        <Label Content="{Binding DownloadFolder}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Width="157"/>
 
 
         <!--Todo list-->
@@ -60,7 +60,8 @@
             <ListBoxItem>Show items per date</ListBoxItem>
             <ListBoxItem>Show networkspeed we are using</ListBoxItem>
         </ListBox>
-        <Label Content="{Binding DownloadFolder}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Width="157"/>
+        <Button Content="Open FileZilla" Grid.Column="1" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OpenFilleZillaCommand}" />
+        
 
 
     </Grid>

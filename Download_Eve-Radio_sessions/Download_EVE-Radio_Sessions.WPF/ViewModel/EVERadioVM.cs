@@ -98,6 +98,12 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             get { return new RelayCommand(OpenDownloadFolder); }
         }
 
+        //Button "Open Filezilla" in main screen
+        public ICommand OpenFilleZillaCommand
+        {
+            get { return new RelayCommand(OpenFileZilla); }
+        }
+
 
 
 
@@ -150,7 +156,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             }
         }
 
-        
+
         private bool IsFullSession(string localpath)
         {
             try
@@ -265,11 +271,11 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 
             //Opzoeken van de bestandsnaam in de sessielijst
             EVERadioSession evers = EVERadioSessions.Find(f => f.FileName == sessiontolookfor);
-            
+
             //TODO: Stopwatch per sessie ophalen en downloadsnelheid berekenen.
             //Console.WriteLine("Downloadsnelheid " + evers.FileName + " = " + (e.BytesReceived / 1024d / evers.StopWatch.Elapsed.TotalSeconds) + "kb/s");
             evers.DownloadSpeed = e.BytesReceived / 1024d / evers.StopWatch.Elapsed.TotalSeconds;
-            evers.FileSize = e.TotalBytesToReceive/1000000;
+            evers.FileSize = e.TotalBytesToReceive / 1000000;
 
 
             //Als we iets gevonden hebben vullen we een percentage in.
@@ -305,7 +311,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                         Stopwatch sw = new Stopwatch();
                         //sw.Start();
 
-                        EVERadioSessions.Add(new EVERadioSession() { FilePath = downloadUrl, FileName = bestandsnaam, StopWatch = sw});
+                        EVERadioSessions.Add(new EVERadioSession() { FilePath = downloadUrl, FileName = bestandsnaam, StopWatch = sw });
                     }
                 }
             }
@@ -351,6 +357,23 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         {
             //Folder openen
             Process.Start(DownloadFolder);
+        }
+
+        //Open Filezilla
+        private void OpenFileZilla()
+        {
+            try
+            {
+                //Gaat in regedit zoeken naar het pad aan de hand van onderstaande waarde 
+                //(onderstaande waarde heb ik zelf in regedit opgezocht om dit te weten voor filezilla)
+                //Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\filezilla.exe
+                Process.Start("Filezilla.exe");
+            }
+            catch(Exception ex)
+            {
+                FeedbackColor = "Red";
+                Feedback = "Filezilla niet geopend: " + ex.Message;
+            }
         }
         #endregion
     }
