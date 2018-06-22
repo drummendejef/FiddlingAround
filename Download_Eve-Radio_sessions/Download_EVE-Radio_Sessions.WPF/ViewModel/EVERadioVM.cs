@@ -86,8 +86,14 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             get { return new RelayCommand(DownloadSelected); }
         }
 
-        //Button "Open Download Folder" in main screen
+        //Button "Choose Download Folder" in main screen
         public ICommand ChooseDownloadFolderCommand
+        {
+            get { return new RelayCommand(ChooseDownloadFolder); }
+        }
+
+        //Button "Open Download Folder" in main screen
+        public ICommand OpenDownloadFolderCommand
         {
             get { return new RelayCommand(OpenDownloadFolder); }
         }
@@ -312,7 +318,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         }
 
         //Open and choose a folder where the downloads will go to
-        private void OpenDownloadFolder()
+        private void ChooseDownloadFolder()
         {
             try
             {
@@ -328,6 +334,8 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                         DownloadFolder = fbd.SelectedPath;
 
                         Console.WriteLine("Downloadpad veranderd naar: " + fbd.SelectedPath);
+                        FeedbackColor = "Black";
+                        Feedback = "Downloadpad veranderd.";
                     }
                 }
             }
@@ -336,6 +344,13 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                 FeedbackColor = "Red";
                 Feedback = "Failed to open folder: " + ex.Message;
             }
+        }
+
+        //Open the download folder in windows explorer
+        private void OpenDownloadFolder()
+        {
+            //Folder openen
+            Process.Start(DownloadFolder);
         }
         #endregion
     }

@@ -42,25 +42,26 @@
 
         <Button Content="Download All" Command="{Binding DownloadAllCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="30" Width="80"/>
         <Button Content="Download Selected" CommandParameter="{Binding ElementName=everadiosessionsListView, Path=SelectedItems}" Command="{Binding DownloadSelectedCommand}" HorizontalAlignment="Left" Margin="95,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="30"/>
-        <CheckBox Content="Use proxy" Grid.Column="1" HorizontalAlignment="Left" Margin="187,48,0,0" VerticalAlignment="Top" IsChecked="{Binding UseProxy}"/>
+        <CheckBox Content="Use proxy" Grid.Column="1" HorizontalAlignment="Left" Margin="186,75,0,0" VerticalAlignment="Top" IsChecked="{Binding UseProxy}"/>
 
         <Label Content="Feedback:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,70" VerticalAlignment="Bottom" />
         <TextBlock Grid.Column="1" Margin="10,0,10,10" VerticalAlignment="Bottom" Height="60px" TextWrapping="Wrap" Text="{Binding Feedback}" Foreground="{Binding FeedbackColor}"/>
-        <Button Content="Choose Download Folder" Grid.Column="1" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Command="{Binding ChooseDownloadFolderCommand}" />
-        
-        
-        
+        <Button Content="Choose Download Folder" Grid.Column="1" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Command="{Binding ChooseDownloadFolderCommand}"/>
+        <Button Content="Open Downloadfolder" Grid.Column="1" Margin="153,45,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="121" Command="{Binding OpenDownloadFolderCommand}"/>
+
+
+
         <!--Todo list-->
         <Label Content="Todo List" Grid.Column="1" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
         <ListBox Grid.Column="1" Height="100" Margin="10,125,10,0" VerticalAlignment="Top">
             <ListBoxItem>Choose which song to download (download selected button?)</ListBoxItem>
-            <ListBoxItem>Add button to open the downloadfolder (om na te kijken of het volledig gedownload is, of het liedje af te spelen,...)</ListBoxItem>
             <ListBoxItem>show what item an error came from</ListBoxItem>
             <ListBoxItem>Show errors in a list?</ListBoxItem>
             <ListBoxItem>Show items per date</ListBoxItem>
             <ListBoxItem>Show networkspeed we are using</ListBoxItem>
         </ListBox>
         <Label Content="{Binding DownloadFolder}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Width="157"/>
+
 
     </Grid>
 </Window>

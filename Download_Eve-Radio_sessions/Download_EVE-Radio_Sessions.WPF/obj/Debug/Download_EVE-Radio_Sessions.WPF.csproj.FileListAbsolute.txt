@@ -26,7 +26,6 @@ C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Downlo
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\obj\Debug\Download_EVE-Radio_Sessions.WPF.csproj.GenerateResource.Cache
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\obj\Debug\Download_EVE-Radio_Sessions.WPF.exe
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\obj\Debug\Download_EVE-Radio_Sessions.WPF.pdb
-C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\obj\Debug\Download_EVE-Radio_Sessions.WPF.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\bin\Debug\Download_EVE-Radio-Sessions.ClassLibrary.dll
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\bin\Debug\Download_EVE-Radio-Sessions.ClassLibrary.pdb
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\bin\Debug\Newtonsoft.Json.dll
@@ -34,3 +33,5 @@ C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Downlo
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\obj\Debug\Download_EVE-Radio_Sessions.WPF.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\bin\Debug\Microsoft.WindowsAPICodePack.dll
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\obj\Debug\Download_EVE-Radio_Sessions.WPF.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\obj\Debug\Download_EVE-Radio_Sessions.WPF.csproj.CopyComplete
