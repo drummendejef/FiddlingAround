@@ -35,3 +35,7 @@ C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Downlo
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\obj\Debug\Download_EVE-Radio_Sessions.WPF.csprojAssemblyReference.cache
 C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\obj\Debug\Download_EVE-Radio_Sessions.WPF.csproj.CopyComplete
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\bin\Debug\Download_EVE-Radio_Sessions.WPF.exe.manifest
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\bin\Debug\Download_EVE-Radio_Sessions.WPF.application
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\obj\Debug\Download_EVE-Radio_Sessions.WPF.exe.manifest
+C:\Users\Admin\Documents\GitHub\FidlingAround\Download_Eve-Radio_sessions\Download_EVE-Radio_Sessions.WPF\obj\Debug\Download_EVE-Radio_Sessions.WPF.application

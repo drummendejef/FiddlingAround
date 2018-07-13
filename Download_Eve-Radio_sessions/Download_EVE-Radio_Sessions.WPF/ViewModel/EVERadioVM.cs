@@ -367,7 +367,12 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                 //Gaat in regedit zoeken naar het pad aan de hand van onderstaande waarde 
                 //(onderstaande waarde heb ik zelf in regedit opgezocht om dit te weten voor filezilla)
                 //Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\filezilla.exe
-                Process.Start("Filezilla.exe");
+                Process pcss = new Process();
+
+                pcss.StartInfo.Arguments = "--local=" + _downloadfolder + " --site=0/Thuis";
+                pcss.StartInfo.FileName = "Filezilla.exe";
+                pcss.Start();
+                //Process.Start("Filezilla.exe");
             }
             catch(Exception ex)
             {
