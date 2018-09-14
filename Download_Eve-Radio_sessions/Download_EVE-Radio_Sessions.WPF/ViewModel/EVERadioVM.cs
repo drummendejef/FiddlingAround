@@ -235,7 +235,10 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                 if(ex.Message == "Unable to connect to the remote server")
                     Feedback = "Error, try again with Proxy enabled";
                 else
-                    Feedback = "Something went wrong, maybe this helps: " + ex.Message;
+                {
+
+                    Feedback = "Bestand: " + naam.Split('\\').Last() + " - Something went wrong, maybe this helps: " + ex.Message;
+                }
 
                 FeedbackColor = "Red";
 
@@ -319,7 +322,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             {
                 Console.WriteLine(ex.Message);
                 FeedbackColor = "Red";
-                Feedback = "Something went wrong, maybe this helps: " + ex.Message;
+                Feedback = "Failed getting all sessions. Maybe this helps: " + ex.Message;
             }
         }
 
