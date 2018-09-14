@@ -35,6 +35,17 @@ namespace Download_EVE_Radio_Sessions.WPF.Models
         }
 
         /// <summary>
+        /// Is Item selected to download using "download selected files only"
+        /// </summary>
+        private bool _isselected;
+        public bool IsSelected
+        {
+            get { return _isselected; }
+            set { _isselected = value; RaisePropertyChanged("IsSelected"); }
+        }
+
+
+        /// <summary>
         /// Keep the stopwatch per session
         /// </summary>
         private Stopwatch _stopwatch;
@@ -68,6 +79,8 @@ namespace Download_EVE_Radio_Sessions.WPF.Models
             get { return _timestarted; }
             set { _timestarted = value; RaisePropertyChanged("TimeStarted"); }
         }
+
+
 
 
 

@@ -155,7 +155,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             {
                 Console.WriteLine("Foutboodschap: " + ex.Message);
                 FeedbackColor = "Red";
-                FeedbackList.Add("Something went wrong, maybe this helps: " + ex.Message);
+                FeedbackList.Add("DownloadAll failed: " + ex.Message);
             }
         }
 
@@ -192,14 +192,32 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         //Download de geselecteerde sessies
         private void DownloadSelected()
         {
-            Console.WriteLine("DownloadSelected geklikt");
+            try
+            {
+                //Sessies ophalen die geselecteerd zijn
+                foreach(EVERadioSession sessie in EVERadioSessions.Where(item => item.IsSelected))
+                {
+                    string localpath = _downloadfolder + sessie.FileName;
 
-            //TODO: Ophalen welke sessies geselecteerd zijn.
-
-
-            //TODO: Sessies downloaden
+                    if(!IsFullSession(localpath))//Als het een volledig bestand is moeten we het niet opnieuw downloaden
+                    {
+                        sessie.Achtergrondkleur = "Orange";
+                        DownloadFileAsync(sessie.FilePath, localpath);//Aanzetten om bestanden te downloaden
+                    }
+                    else
+                    {
+                        sessie.Achtergrondkleur = "GreenYellow";
+                        sessie.Progress = 100;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Foutboodschap: " + ex.Message);
+                FeedbackColor = "Red";
+                FeedbackList.Add("DownloadSelected failed: " + ex.Message);
+            }
         }
-
 
         //Start downloaden van een bestand
         private async Task DownloadFileAsync(string url, string naam)

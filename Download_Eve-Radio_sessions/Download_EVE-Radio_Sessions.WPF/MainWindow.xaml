@@ -33,11 +33,11 @@
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            <!--<ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected}" />
                 </Style>
-            </ListView.ItemContainerStyle>-->
+            </ListView.ItemContainerStyle>
         </ListView>
 
         <Button Content="Download All" Command="{Binding DownloadAllCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="30" Width="80"/>
@@ -54,7 +54,7 @@
         <!--Todo list-->
         <Label Content="Todo List" Grid.Column="1" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Height="26" Width="57"/>
         <ListBox Grid.Column="1" Height="100" Margin="10,125,10,0" VerticalAlignment="Top" IsEnabled="False" >
-            <ListBoxItem>Choose which song to download (download selected button?)</ListBoxItem>
+            <ListBoxItem>Choose which song to download (download checkbox achter elk item en daarop checken?)</ListBoxItem>
             <ListBoxItem>Show items per date</ListBoxItem>
             <ListBoxItem>Show networkspeed we are using</ListBoxItem>
         </ListBox>
