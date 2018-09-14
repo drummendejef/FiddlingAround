@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace Download_EVE_Radio_Sessions.WPF.ViewModel
 {
@@ -40,12 +41,13 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
         }
 
         //Feedback and color
-        private string _feedback;
-        public string Feedback
+        private ObservableCollection<string> _feedbacklist = new ObservableCollection<string>();
+        public ObservableCollection<string> FeedbackList
         {
-            get { return _feedback; }
-            set { _feedback = value; RaisePropertyChanged("Feedback"); }
+            get { return _feedbacklist; }
+            set { _feedbacklist = value; RaisePropertyChanged("FeedbackList"); }
         }
+
         private string _feedbackcolor;
         public string FeedbackColor
         {
@@ -118,8 +120,8 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             GetAllSessions();
 
             //Feedback invullen
-            Feedback = "Hello, I'm feedback. Please press 'Download All' to start";
-            FeedbackColor = "Black";
+            FeedbackList.Add("Hello I'm feedback. Please press 'Download All' to start");
+            FeedbackColor = "White";
         }
 
         //Download all the sessions
@@ -128,8 +130,9 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             try
             {
                 //Give feedback to user
+                FeedbackList.Add("We started downloading ALL THE SONGS");
                 FeedbackColor = "Green";
-                Feedback = "We started downloading ALL THE SONGS";
+                
 
                 //We overlopen alle EVE Radio sessies die we willen downloaden
                 foreach(EVERadioSession sessie in EVERadioSessions)
@@ -152,7 +155,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             {
                 Console.WriteLine("Foutboodschap: " + ex.Message);
                 FeedbackColor = "Red";
-                Feedback = "Something went wrong, maybe this helps: " + ex.Message;
+                FeedbackList.Add("Something went wrong, maybe this helps: " + ex.Message);
             }
         }
 
@@ -233,11 +236,11 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                 Console.WriteLine(ex.Message);
 
                 if(ex.Message == "Unable to connect to the remote server")
-                    Feedback = "Error, try again with Proxy enabled";
+                    FeedbackList.Add("Error, try again with Proxy enabled");
                 else
                 {
 
-                    Feedback = "Bestand: " + naam.Split('\\').Last() + " - Something went wrong, maybe this helps: " + ex.Message;
+                    FeedbackList.Add("Bestand: " + naam.Split('\\').Last() + " - Something went wrong, maybe this helps: " + ex.Message);
                 }
 
                 FeedbackColor = "Red";
@@ -322,7 +325,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             {
                 Console.WriteLine(ex.Message);
                 FeedbackColor = "Red";
-                Feedback = "Failed getting all sessions. Maybe this helps: " + ex.Message;
+                FeedbackList.Add("Failed getting all sessions. Maybe this helps: " + ex.Message);
             }
         }
 
@@ -343,15 +346,15 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
                         DownloadFolder = fbd.SelectedPath;
 
                         Console.WriteLine("Downloadpad veranderd naar: " + fbd.SelectedPath);
-                        FeedbackColor = "Black";
-                        Feedback = "Downloadpad veranderd.";
+                        FeedbackColor = "White";
+                        FeedbackList.Add("Downloadpad veranderd naar " + fbd.SelectedPath);
                     }
                 }
             }
             catch(Exception ex)
             {
                 FeedbackColor = "Red";
-                Feedback = "Failed to open folder: " + ex.Message;
+                FeedbackList.Add("Failed to open folder: " + ex.Message);
             }
         }
 
@@ -380,7 +383,7 @@ namespace Download_EVE_Radio_Sessions.WPF.ViewModel
             catch(Exception ex)
             {
                 FeedbackColor = "Red";
-                Feedback = "Filezilla niet geopend: " + ex.Message;
+                FeedbackList.Add("Filezilla niet geopend: " + ex.Message);
             }
         }
         #endregion

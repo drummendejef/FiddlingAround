@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:Download_EVE_Radio_Sessions.WPF"
         mc:Ignorable="d"
         DataContext="{Binding EVERadioVM, Source={StaticResource Locator}}"
-        Title="MainWindow" Height="600" Width="700">
+        Title="MainWindow" Height="600" Width="850">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="364*"/>
-            <ColumnDefinition Width="253*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <ListView Name="everadiosessionsListView" Margin="10,10,8,10" ItemsSource="{Binding EVERadioSessions}" SelectionMode="Multiple"  >
             <ListView.ItemTemplate>
@@ -41,27 +41,26 @@
         </ListView>
 
         <Button Content="Download All" Command="{Binding DownloadAllCommand}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="30" Width="80"/>
-        <Button Content="Download Selected" CommandParameter="{Binding ElementName=everadiosessionsListView, Path=SelectedItems}" Command="{Binding DownloadSelectedCommand}" HorizontalAlignment="Left" Margin="95,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="30"/>
-        <CheckBox Content="Use proxy" Grid.Column="1" HorizontalAlignment="Left" Margin="186,75,0,0" VerticalAlignment="Top" IsChecked="{Binding UseProxy}"/>
+        <Button Content="Download Selected" CommandParameter="{Binding ElementName=everadiosessionsListView, Path=SelectedItems}" Command="{Binding DownloadSelectedCommand}" HorizontalAlignment="Left" Margin="95,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="30" Width="106"/>
+        <CheckBox Content="Use proxy" Grid.Column="1" HorizontalAlignment="Left" Margin="186,75,0,0" VerticalAlignment="Top" IsChecked="{Binding UseProxy}" Height="15" Width="72"/>
 
-        <Label Content="Feedback:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,70" VerticalAlignment="Bottom" />
-        <TextBlock Grid.Column="1" Margin="10,0,10,10" VerticalAlignment="Bottom" Height="60px" TextWrapping="Wrap" Text="{Binding Feedback}" Foreground="{Binding FeedbackColor}"/>
-        <Button Content="Choose Download Folder" Grid.Column="1" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Command="{Binding ChooseDownloadFolderCommand}"/>
-        <Button Content="Open Downloadfolder" Grid.Column="1" Margin="153,45,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="121" Command="{Binding OpenDownloadFolderCommand}"/>
-        <Label Content="{Binding DownloadFolder}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Width="157"/>
+        <Label Content="Feedback:" Grid.Column="1" HorizontalAlignment="Left" Margin="16,0,0,129" VerticalAlignment="Bottom" Height="26" Width="63" />
+        <!--<TextBlock Grid.Column="1" Margin="10,0,10,96" VerticalAlignment="Bottom" Height="60" TextWrapping="Wrap" Text="{Binding Feedback}" Foreground="{Binding FeedbackColor}"/>-->
+        <ListBox Grid.Column="1" Margin="10,0,10,10" VerticalAlignment="Bottom" Height="119" ItemsSource="{Binding FeedbackList}" Background="{Binding FeedbackColor}"  />
+        <Button Content="Choose Download Folder" Grid.Column="1" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Command="{Binding ChooseDownloadFolderCommand}" Height="20" Width="138"/>
+        <Button Content="Open Downloadfolder" Grid.Column="1" Margin="153,45,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="121" Command="{Binding OpenDownloadFolderCommand}" Height="20"/>
+        <Label Content="{Binding DownloadFolder}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Width="157" Height="26"/>
 
 
         <!--Todo list-->
-        <Label Content="Todo List" Grid.Column="1" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
+        <Label Content="Todo List" Grid.Column="1" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Height="26" Width="57"/>
         <ListBox Grid.Column="1" Height="100" Margin="10,125,10,0" VerticalAlignment="Top">
             <ListBoxItem>Choose which song to download (download selected button?)</ListBoxItem>
-            <ListBoxItem>show what item an error came from</ListBoxItem>
-            <ListBoxItem>Show errors in a list?</ListBoxItem>
             <ListBoxItem>Show items per date</ListBoxItem>
             <ListBoxItem>Show networkspeed we are using</ListBoxItem>
         </ListBox>
-        <Button Content="Open FileZilla" Grid.Column="1" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OpenFilleZillaCommand}" />
-        
+        <Button Content="Open FileZilla" Grid.Column="1" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OpenFilleZillaCommand}" Height="20" />
+
 
 
     </Grid>
