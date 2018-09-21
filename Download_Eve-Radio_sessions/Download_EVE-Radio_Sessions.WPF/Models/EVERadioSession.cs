@@ -13,6 +13,9 @@ namespace Download_EVE_Radio_Sessions.WPF.Models
     {
         public string FileName { get; set; }
 
+        /// <summary>
+        /// Download Progress, how much % of the file has already been downloaded
+        /// </summary>
         private int _progress;
         public int Progress
         {
@@ -64,21 +67,32 @@ namespace Download_EVE_Radio_Sessions.WPF.Models
             set { _downloadspeed = value; RaisePropertyChanged("DownloadSpeed"); }
         }
 
-        /// <summary>
-        /// Extra information for on the tooltip
-        /// </summary>
+       
+        //Extra information for on the tooltip.
         private long _filesize;
         public long FileSize 
         {
             get { return _filesize; }
             set { _filesize = value; RaisePropertyChanged("FileSize"); }
         }
-        private DateTime _timestarted;//Time the download started
+        private DateTime _timestarted;
         public DateTime TimeStarted
         {
             get { return _timestarted; }
             set { _timestarted = value; RaisePropertyChanged("TimeStarted"); }
         }
+
+        /// <summary>
+        /// Keep status of file. Is it still downloading? (disable download all button/make sure it can't be downloaded again when already downloading)
+        /// </summary>
+        private bool _isdownloading = false;
+        public bool IsDownloading
+        {
+            get { return _isdownloading; }
+            set { _isdownloading = value; RaisePropertyChanged("IsDownloading"); }
+        }
+
+
 
 
 
