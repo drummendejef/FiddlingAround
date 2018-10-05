@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuffWithExcel", "StuffWithExcel\StuffWithExcel.csproj", "{9A941460-1FB0-4747-B247-0C431D5E0F15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StuffWithExcel.ConsoleApp", "StuffWithExcel.ConsoleApp\StuffWithExcel.ConsoleApp.csproj", "{1AA8E8CF-5C7C-4BF2-B72F-4F5CD9016FA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0668A299-99E9-4B0F-A50E-C9FA830A6CAC}"
+	ProjectSection(SolutionItems) = preProject
+		RandomExcel.xlsx = RandomExcel.xlsx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +16,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9A941460-1FB0-4747-B247-0C431D5E0F15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A941460-1FB0-4747-B247-0C431D5E0F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A941460-1FB0-4747-B247-0C431D5E0F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A941460-1FB0-4747-B247-0C431D5E0F15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA8E8CF-5C7C-4BF2-B72F-4F5CD9016FA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA8E8CF-5C7C-4BF2-B72F-4F5CD9016FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA8E8CF-5C7C-4BF2-B72F-4F5CD9016FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA8E8CF-5C7C-4BF2-B72F-4F5CD9016FA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
