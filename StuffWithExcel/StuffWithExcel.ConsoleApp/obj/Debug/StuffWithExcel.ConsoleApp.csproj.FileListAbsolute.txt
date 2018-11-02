@@ -1,0 +1,7 @@
+C:\Users\Admin\Documents\GitHub\FidlingAround\StuffWithExcel\StuffWithExcel.ConsoleApp\bin\Debug\StuffWithExcel.ConsoleApp.exe.config
+C:\Users\Admin\Documents\GitHub\FidlingAround\StuffWithExcel\StuffWithExcel.ConsoleApp\bin\Debug\StuffWithExcel.ConsoleApp.exe
+C:\Users\Admin\Documents\GitHub\FidlingAround\StuffWithExcel\StuffWithExcel.ConsoleApp\bin\Debug\StuffWithExcel.ConsoleApp.pdb
+C:\Users\Admin\Documents\GitHub\FidlingAround\StuffWithExcel\StuffWithExcel.ConsoleApp\obj\Debug\StuffWithExcel.ConsoleApp.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\FidlingAround\StuffWithExcel\StuffWithExcel.ConsoleApp\obj\Debug\StuffWithExcel.ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\FidlingAround\StuffWithExcel\StuffWithExcel.ConsoleApp\obj\Debug\StuffWithExcel.ConsoleApp.exe
+C:\Users\Admin\Documents\GitHub\FidlingAround\StuffWithExcel\StuffWithExcel.ConsoleApp\obj\Debug\StuffWithExcel.ConsoleApp.pdb

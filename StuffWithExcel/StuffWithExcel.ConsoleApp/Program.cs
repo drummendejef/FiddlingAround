@@ -12,7 +12,13 @@ namespace StuffWithExcel.ConsoleApp
         static void Main(string[] args)
         {
             Excel.Application xlApp = new Excel.Application();
-            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"");
+            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:\Users\Admin\Documents\GitHub\FidlingAround\StuffWithExcel\RandomExcel.xlsx");
+            Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+            Excel.Range xlRange = xlWorksheet.UsedRange;
+
+            //https://coderwall.com/p/app3ya/read-excel-file-in-c
+
+
         }
     }
 }
