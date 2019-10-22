@@ -10,6 +10,8 @@ namespace EFGetStarted
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
 
+        public DbSet<Test1> Test1s { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite("Data Source=blogging.db");
     }
@@ -30,5 +32,11 @@ namespace EFGetStarted
 
         public int BlogId { get; set; }
         public Blog Blog { get; set; }
+    }
+
+    public class Test1
+    {
+        public int Test1Id { get; set; }//Dit is nodig voor primary keys
+        public string Names { get; set; }
     }
 }

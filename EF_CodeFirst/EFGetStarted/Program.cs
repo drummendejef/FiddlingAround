@@ -43,6 +43,10 @@ namespace EFGetStarted
                 Console.WriteLine("Delete the blog");
                 db.Remove(blog);
                 db.SaveChanges();
+
+                // Add own Test item
+                db.Add(new Test1 { Names = "Naam 1" });
+                db.SaveChanges();
             }
         }
     }
