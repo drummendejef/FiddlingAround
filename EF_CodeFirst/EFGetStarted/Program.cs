@@ -14,6 +14,12 @@ namespace EFGetStarted
 
             //EF Core: https://docs.microsoft.com/en-us/ef/core/
 
+            //Elke x als het database model is aangepast, moet een update gebeuren van het script dat de db aanmaakt.
+            //Daarvoor gebruiken we 'Add-Migration naam' in de Package Manager Console.
+            //De naam van de add-migration moet wel elke keer uniek zijn.
+            //Na de add-migration commando 'Update-Database' in Package Manager Console uitvoeren.
+
+
 
             using (var db = new BloggingContext())
             {
