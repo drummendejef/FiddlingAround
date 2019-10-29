@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_0
 C:\Git\FiddlingAround\WPF Login\App.xaml
-2324342929
+31475891054
 
-61766654395
+6311412841
 192-1037106189
-Views\View1.xaml;Views\View2.xaml;
+MainWindow.xaml;Views\View1.xaml;Views\View2.xaml;
 
 False
 

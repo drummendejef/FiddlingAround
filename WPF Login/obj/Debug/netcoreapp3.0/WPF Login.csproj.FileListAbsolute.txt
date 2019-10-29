@@ -1,0 +1,21 @@
+C:\Git\FiddlingAround\WPF Login\bin\Debug\netcoreapp3.0\WPF Login.exe
+C:\Git\FiddlingAround\WPF Login\bin\Debug\netcoreapp3.0\WPF Login.deps.json
+C:\Git\FiddlingAround\WPF Login\bin\Debug\netcoreapp3.0\WPF Login.runtimeconfig.json
+C:\Git\FiddlingAround\WPF Login\bin\Debug\netcoreapp3.0\WPF Login.runtimeconfig.dev.json
+C:\Git\FiddlingAround\WPF Login\bin\Debug\netcoreapp3.0\WPF Login.dll
+C:\Git\FiddlingAround\WPF Login\bin\Debug\netcoreapp3.0\WPF Login.pdb
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\WPF Login.csprojAssemblyReference.cache
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\MainWindow.g.cs
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\Views\View1.g.cs
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\Views\View2.g.cs
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\App.g.cs
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\WPF Login_MarkupCompile.cache
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\WPF Login_MarkupCompile.lref
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\MainWindow.baml
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\Views\View1.baml
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\Views\View2.baml
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\WPF Login.g.resources
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\WPF Login.AssemblyInfoInputs.cache
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\WPF Login.AssemblyInfo.cs
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\WPF Login.dll
+C:\Git\FiddlingAround\WPF Login\obj\Debug\netcoreapp3.0\WPF Login.pdb
